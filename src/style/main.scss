@@ -1,3 +1,9 @@
 :root {
-	--color-primary: red;
+	--color-bg: white;
+	--color-text-primary: black;
+
+	&[data-theme="dark"] {
+		--color-bg: black;
+		--color-text-primary: white;
+	}
 }

@@ -1,3 +1,3 @@
-# 🚀 Astro Utils
+# 🚀 Astro theming
 
 TODO: Docs

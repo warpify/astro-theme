@@ -1,19 +1,16 @@
 ---
 import Layout from "../layouts/base.astro";
+import SetDefaultTheme from "../SetDefaultTheme.astro";
+import ThemeToggle from "../ThemeToggle.astro";
 ---
 
 <Layout>
-	<ul>
-		<li>
-			<a href="/gotop">Go top</a>
-			<ul>
-				<li>
-					<a href="/gotop/style">Custom style</a>
-				</li>
-				<li>
-					<a href="/gotop/offset">Custom offset</a>
-				</li>
-			</ul>
-		</li>
-	</ul>
+	<SetDefaultTheme />
+	<ThemeToggle />
 </Layout>
+
+<style global>
+	body {
+		background: var(--color-bg);
+	}
+</style>
