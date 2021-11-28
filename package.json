@@ -1,0 +1,40 @@
+{
+	"name": "astro-utils",
+	"version": "0.0.2",
+	"description": "Various utils for astro",
+	"homepage": "https://github.com/warpsio/astro-utils",
+	"bugs": {
+		"url": "https://github.com/warpsio/astro-utils/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/warpsio/astro-utils"
+	},
+	"files": [
+		"src/index.js",
+		"src/GoTopWithProgress.astro",
+		"src/MouseBackground.astro",
+		"src/ScrollStatus.astro"
+	],
+	"exports": "./src/index.js",
+	"keywords": [
+		"astro-component",
+		"astro",
+		"astro utils",
+		"astro-utils"
+	],
+	"author": "Giulio Zanchetta",
+	"license": "MIT",
+	"scripts": {
+		"dev": "astro dev",
+		"preview": "astro preview",
+		"format": "yarn prettier -w ./src",
+		"release": "standard-version"
+	},
+	"devDependencies": {
+		"astro": "^0.21.4",
+		"prettier": "^2.4.1",
+		"prettier-plugin-astro": "^0.0.9",
+		"standard-version": "^9.3.2"
+	}
+}
