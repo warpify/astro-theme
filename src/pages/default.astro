@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/base.astro";
+import ThemeSwitcher from "../ThemeSwitcher.astro";
+
+let themes = [
+	{ name: "dark", icon: "ph:moon-thin" },
+	{ name: "light", icon: "ph:sun-thin" },
+	{ name: "dimmed", icon: "ph:cloud-sun-thin" }
+];
+---
+
+<Layout>
+	<ThemeSwitcher {themes} defaultDark="dimmed" />
+</Layout>
+
+<style global>
+	body {
+		background: var(--color-bg);
+	}
+</style>

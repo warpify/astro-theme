@@ -6,4 +6,9 @@
 		--color-bg: black;
 		--color-text-primary: white;
 	}
+
+	&[data-theme="dimmed"] {
+		--color-bg: gray;
+		--color-text-primary: white;
+	}
 }

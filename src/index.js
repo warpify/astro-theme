@@ -1,2 +1,1 @@
-export { default as SetDefaultTheme } from "./SetDefaultTheme.astro";
-export { default as ThemeToggle } from "./ThemeToggle.astro";
+export { default as ThemeSwitcher } from "./ThemeSwitcher.astro";

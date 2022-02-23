@@ -1,0 +1,113 @@
+---
+import { Icon } from "astro-icon";
+
+interface Theme {
+	name?: string;
+	icon?: string;
+}
+
+interface Props {
+	themes?: Theme[];
+	defaultDark?: string;
+	defaultLight?: string;
+	type?: string;
+}
+
+let {
+	themes = [
+		{ name: "dark", icon: "ph:moon-thin" },
+		{ name: "light", icon: "ph:sun-thin" }
+	],
+	defaultDark = "dark",
+	defaultLight = "light",
+	type = "rotate"
+} = Astro.props as Props;
+---
+
+<button class="icon" id="theme-toggle" onclick="switchTheme()">
+	{themes.map((theme) => <Icon name={theme.icon} class={`theme-${theme.name}`} />)}
+</button>
+
+<script hoist define:vars={{ themes }}>
+	/** Connect theme toggle */
+	const THEME_STORAGE_KEY = "theme";
+
+	function switchTheme(theme) {
+		let currentTheme = document.documentElement.getAttribute("data-theme") ?? "light";
+		var themesName = themes.map(function (theme) {
+			return theme["name"];
+		});
+		var newTheme = theme ?? getNextItem(themesName, currentTheme);
+		document.documentElement.setAttribute("data-theme", newTheme);
+		localStorage.setItem(THEME_STORAGE_KEY, newTheme);
+	}
+
+	function getNextItem(items, currentItem) {
+		const currentIndex = items.indexOf(currentItem);
+		const nextIndex = currentIndex + 1;
+		if (nextIndex >= items.length) {
+			return items[0];
+		}
+		return items[nextIndex];
+	}
+</script>
+
+<script hoist define:vars={{ defaultDark, defaultLight }}>
+	const storedTheme = localStorage.getItem("theme");
+	const prefersDark = window && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+	let theme = defaultLight ?? "light";
+	if (prefersDark) {
+		theme = defaultDark ?? "dark";
+	}
+	if (storedTheme) {
+		theme = storedTheme;
+	}
+	document.documentElement.setAttribute("data-theme", theme);
+</script>
+
+<style global>
+	:root[data-theme] #theme-toggle > * {
+		display: none;
+	}
+	:root[data-theme="dark"] #theme-toggle .theme-dark {
+		display: block;
+	}
+	:root[data-theme="light"] #theme-toggle .theme-light {
+		display: block;
+	}
+	:root[data-theme="dimmed"] #theme-toggle .theme-dimmed {
+		display: block;
+	}
+</style><style lang="scss">
+	#theme-toggle {
+		opacity: 1;
+		transition: opacity 75ms cubic-bezier(0.32, 0, 0.67, 0), color 150ms, background-color 150ms, border-color 150ms;
+		& svg {
+			fill: currentColor;
+			color: initial;
+			max-height: 2rem;
+		}
+	}
+	button.icon {
+		cursor: pointer;
+		border-color: transparent;
+		background-color: transparent;
+		color: var(--color-text-primary);
+		box-shadow: none;
+		padding: 0.25em;
+		min-height: 40px;
+		min-width: 40px;
+	}
+	.sr-only {
+		border: 0;
+		-webkit-clip-path: inset(50%);
+		clip-path: inset(50%);
+		height: 1px;
+		margin: 0;
+		overflow: hidden;
+		padding: 0;
+		position: absolute !important;
+		white-space: nowrap;
+		width: 1px;
+	}
+</style>
