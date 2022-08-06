@@ -28,7 +28,7 @@ let {
 	{themes.map((theme) => <Icon name={theme.icon} class={`theme-${theme.name}`} />)}
 </button>
 
-<script hoist define:vars={{ themes }}>
+<script define:vars={{ themes }}>
 	/** Connect theme toggle */
 	const THEME_STORAGE_KEY = "theme";
 
@@ -52,7 +52,7 @@ let {
 	}
 </script>
 
-<script hoist define:vars={{ defaultDark, defaultLight }}>
+<script define:vars={{ defaultDark, defaultLight }}>
 	const storedTheme = localStorage.getItem("theme");
 	const prefersDark = window && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 	let theme = defaultLight ?? "light";
@@ -65,7 +65,7 @@ let {
 	document.documentElement.setAttribute("data-theme", theme);
 </script>
 
-<style global>
+<style is:global>
 	:root[data-theme] #theme-toggle > * {
 		display: none;
 	}
