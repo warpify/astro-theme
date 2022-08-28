@@ -1,7 +1,7 @@
 {
 	"name": "astro-theme",
 	"type": "module",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"description": "Theme utils for astro",
 	"homepage": "https://github.com/warpsio/astro-theme",
 	"bugs": {
@@ -31,10 +31,10 @@
 		"release": "standard-version"
 	},
 	"devDependencies": {
-		"astro": "^1.0.0-rc.7",
+		"astro": "^1.1.1",
 		"prettier": "^2.7.1",
-		"prettier-plugin-astro": "^0.3.0",
-		"sass": "^1.54.3",
+		"prettier-plugin-astro": "^0.5.3",
+		"sass": "^1.54.5",
 		"standard-version": "^9.5.0"
 	},
 	"dependencies": {
